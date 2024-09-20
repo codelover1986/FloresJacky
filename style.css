@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1a237e; /* Azul más fuerte */
+}
+
+.bouquet {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Se distribuyen 5 flores por fila */
+    grid-gap: 1vw;
+    width: 100vw;
+    height: 100vh;
+    align-items: end;
+}
+
+.stem {
+    position: relative;
+    width: 1vw;
+    height: 20vh;
+    background-color: green;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    animation: growStem 3s ease forwards;
+}
+
+.flower {
+    position: relative;
+    width: 8vw;
+    height: 8vw;
+    margin-top: -2vw;
+    animation: growFlower 3s ease forwards;
+}
+
+.petal {
+    position: absolute;
+    width: 0;
+    height: 0;
+    background-color: yellow;
+    border-radius: 50%;
+    animation: growPetal 3s ease forwards;
+}
+
+.petal:nth-child(1) {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.petal:nth-child(2) {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.petal:nth-child(3) {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.petal:nth-child(4) {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.center {
+    position: absolute;
+    width: 0;
+    height: 0;
+    background-color: brown;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: growCenter 3s ease forwards;
+}
+
+/* Animations */
+@keyframes growPetal {
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: 4vw;
+        height: 4vw;
+    }
+}
+
+@keyframes growCenter {
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: 2vw;
+        height: 2vw;
+    }
+}
+
+@keyframes growFlower {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes growStem {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 20vh;
+    }
+}
+
+/* Make sure it adapts to any screen size */
+@media (max-width: 768px) {
+    .flower {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .petal {
+        width: 7vw;
+        height: 7vw;
+    }
+
+    .center {
+        width: 4vw;
+        height: 4vw;
+    }
+
+    .stem {
+        width: 2vw;
+        height: 15vh;
+    }
+}
